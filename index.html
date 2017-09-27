@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;http&quot;,&quot;shell&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -211,10 +211,8 @@
     <div class="toc-wrapper">
       <img src="images/logo.png" class="logo" alt="Logo" />
         <div class="lang-selector">
+              <a href="#" data-language-name="http">http</a>
               <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -222,27 +220,106 @@
         <ul class="search-results"></ul>
       <div id="toc" class="toc-list-h1">
           <li>
-            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
-          </li>
-          <li>
-            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
-          </li>
-          <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
+            <a href="#notes_notes" class="toc-h1 toc-link" data-title="Notes">Notes</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Kittens">Get All Kittens</a>
+                    <a href="#notes_use-json-or-xml" class="toc-h2 toc-link" data-title="Notes">Use JSON or XML</a>
                   </li>
                   <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Kittens">Get a Specific Kitten</a>
+                    <a href="#notes_resource-location-uri" class="toc-h2 toc-link" data-title="Notes">Resource Location URI</a>
                   </li>
                   <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Kittens">Delete a Specific Kitten</a>
+                    <a href="#notes_uri-style" class="toc-h2 toc-link" data-title="Notes">URI style</a>
+                  </li>
+                  <li>
+                    <a href="#notes_use-put-or-patch" class="toc-h2 toc-link" data-title="Notes">Use PUT or PATCH</a>
+                  </li>
+                  <li>
+                    <a href="#notes_authentication" class="toc-h2 toc-link" data-title="Notes">Authentication</a>
+                  </li>
+                  <li>
+                    <a href="#notes_errors" class="toc-h2 toc-link" data-title="Notes">Errors</a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+            <a href="#tokens_tokens" class="toc-h1 toc-link" data-title="Tokens">Tokens</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#tokens_attribute" class="toc-h2 toc-link" data-title="Tokens">Attribute</a>
+                  </li>
+                  <li>
+                    <a href="#tokens_create-token" class="toc-h2 toc-link" data-title="Tokens">Create Token</a>
+                  </li>
+                  <li>
+                    <a href="#tokens_delete-token" class="toc-h2 toc-link" data-title="Tokens">Delete Token</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#licenses_licenses" class="toc-h1 toc-link" data-title="Licenses">Licenses</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#licenses_attributes" class="toc-h2 toc-link" data-title="Licenses">Attributes</a>
+                  </li>
+                  <li>
+                    <a href="#licenses_get-license" class="toc-h2 toc-link" data-title="Licenses">Get License</a>
+                  </li>
+                  <li>
+                    <a href="#licenses_update-license" class="toc-h2 toc-link" data-title="Licenses">Update License</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#renewals_renewals" class="toc-h1 toc-link" data-title="Renewals">Renewals</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#renewals_attributes" class="toc-h2 toc-link" data-title="Renewals">Attributes</a>
+                  </li>
+                  <li>
+                    <a href="#renewals_get-renewals" class="toc-h2 toc-link" data-title="Renewals">Get Renewals</a>
+                  </li>
+                  <li>
+                    <a href="#renewals_get-one-renewal" class="toc-h2 toc-link" data-title="Renewals">Get one renewal</a>
+                  </li>
+                  <li>
+                    <a href="#renewals_create-a-renewal-notice" class="toc-h2 toc-link" data-title="Renewals">Create a renewal notice</a>
+                  </li>
+                  <li>
+                    <a href="#renewals_update-a-renewal-notice" class="toc-h2 toc-link" data-title="Renewals">Update a renewal notice</a>
+                  </li>
+                  <li>
+                    <a href="#renewals_archive-a-renewal-notice" class="toc-h2 toc-link" data-title="Renewals">Archive a renewal notice</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#payments_payments" class="toc-h1 toc-link" data-title="Payments">Payments</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#payments_attributes" class="toc-h2 toc-link" data-title="Payments">Attributes</a>
+                  </li>
+                  <li>
+                    <a href="#payments_get-a-payment" class="toc-h2 toc-link" data-title="Payments">Get a payment</a>
+                  </li>
+                  <li>
+                    <a href="#payments_create-a-payment" class="toc-h2 toc-link" data-title="Payments">Create a payment</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#officers_officers" class="toc-h1 toc-link" data-title="Officers">Officers</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#officers_attributes" class="toc-h2 toc-link" data-title="Officers">Attributes</a>
+                  </li>
+                  <li>
+                    <a href="#officers_get-an-officer" class="toc-h2 toc-link" data-title="Officers">Get an officer</a>
+                  </li>
+                  <li>
+                    <a href="#officers_get-officer-39-s-renewal" class="toc-h2 toc-link" data-title="Officers">Get officer's renewal</a>
+                  </li>
+              </ul>
           </li>
       </div>
         <ul class="toc-footer">
@@ -253,231 +330,86 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+        <h1 id='notes_notes'>Notes</h1>
+<p>REST API document for COMP9322 assignment 2.</p>
+<h2 id='notes_use-json-or-xml'>Use JSON or XML</h2>
+<p>I prefer using json for REST APIs because json is natively supported in javascript, making it really convenient.</p>
+<h2 id='notes_resource-location-uri'>Resource Location URI</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://myhost.com/licenses/1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"driverName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nima Nishad"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Every object representation should contain a uri of its location.</p>
 
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>For simplicity, the examples of resources representation below don&#39;t contain <code>http://myhost.com</code> part. But bear in mind that we should have this part in real application.</p>
+<h2 id='notes_uri-style'>URI style</h2>
+<p>For resources with relationship (e.g one-to-one, one-to-many), we have two types of URI style.</p>
 
-<p>This example API documentation page was created with <a href="https://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
-<h1 id='authentication'>Authentication</h1>
+<p>For example, licenses and renewal notices is a one-to-many relationship. Every renewal belongs to a license. So for renewal, we can use either one of the following URIs</p>
+
+<ol>
+<li><code>/licenses/&lt;licenseId&gt;/renewals/&lt;renewalId&gt;</code></li>
+<li><code>/renewals/renewalId</code></li>
+</ol>
+
+<p>The first one has clearer semantic information. But it needs provide extra information (i.e. the license ID) every time we use the renewal notice (either creating, updating).</p>
+
+<p>In the second one, we can represent the relationship inside the resource object, like</p>
+
 <blockquote>
-<p>To authorize, use this code:</p>
+<p>Here is a renewal object</p>
 </blockquote>
-<pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
-</blockquote>
-
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code>Authorization: meowmeowmeow</code></p>
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"license"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+    </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/licenses/1"</span><span class="w">
   </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
-</tr>
-</tbody></table>
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves a specific kitten.</p>
+<p>But it&#39;s a little weird when creating a renewal notice using POST, because we need to provide the foreign key in the request body.</p>
+<h2 id='notes_use-put-or-patch'>Use PUT or PATCH</h2>
+<p>Theoretically prefer PUT because it&#39;s idempotent. However, when updating by PUT, server will ignore some values because either server generates the values automatically or server doesn&#39;t trust the values given by the client.</p>
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
-</tr>
-</tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -X DELETE
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<p>See <a href="#renewals_update-a-renewal-notice">Update a renewal notice</a> for example.</p>
+<h2 id='notes_authentication'>Authentication</h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/tokens</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/licenses</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">token type=driver,id=1</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/licenses</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">token b1c1d8</span>
 </code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
-</tr>
-</tbody></table>
-<h1 id='errors'>Errors</h1>
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files...just save them to the `includes` folder and add them to the top of your `index.md`'s frontmatter. Files are included in the order listed.</aside>
+<p>Every client that needs to access privileged APIs should have an access token.</p>
 
-<p>The Kittn API uses the following error codes:</p>
+<p>We follow the HTTP design, use the token in <code>Authorization header</code>. A token can be simple key value pairs or a hash string.</p>
+
+<p>Driver can get their access token by the renewal notice link in the email, which is like <code>http://clienthost.com/driver?renewalId=1&amp;token=b1c1d8</code></p>
+
+<p>Officers can get their access token by <a href="#tokens_tokens">tokens API</a> when logging in.</p>
+<h2 id='notes_errors'>Errors</h2>
+<p>When a server error happens, the server should return an HTTP status other than <code>HTTP 200</code>. For simplicity, we are not trying to design a detailed error code system by ourselves on top of HTTP error codes. The following table list the HTTP status code the server should return in general cases.</p>
 
 <table><thead>
 <tr>
-<th>Error Code</th>
+<th>HTTP status</th>
 <th>Meaning</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>400</td>
-<td>Bad Request -- Your request sucks</td>
+<td>Bad Request -- Your request has unexpected parameters.</td>
 </tr>
 <tr>
 <td>401</td>
-<td>Unauthorized -- Your API key is wrong</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only</td>
+<td>Unauthorized -- Your access token is wrong.</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found -- The specified kitten could not be found</td>
+<td>Not Found -- The requested resources could not be found.</td>
 </tr>
 <tr>
 <td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&#39;m a teapot</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
+<td>Method Not Allowed -- You tried to access a resource with an invalid method.</td>
 </tr>
 <tr>
 <td>500</td>
@@ -489,13 +421,566 @@ Remember — a happy kitten is an authenticated kitten!
 </tr>
 </tbody></table>
 
+<p>Note <code>50x</code> are runtime error, you should not return them yourself. Instead, you should let your program or server software (i.e. nginx) throw it.</p>
+<h1 id='tokens_tokens'>Tokens</h1>
+<p>Used in authentication and authorisation.</p>
+
+<p>Everytime the client application calls the REST api, it should include the token in the request header if the api needs authorisation.</p>
+
+<p>Token is kind of different from other resources because it&#39;s not a database entity and doesn&#39;t carry any meaningful fields itself.</p>
+<h2 id='tokens_attribute'>Attribute</h2>
+<table><thead>
+<tr>
+<th>Attributes</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>the only thing in a token, can be a int or other unique identifiers, represents a session and stores some user information</td>
+</tr>
+</tbody></table>
+<h2 id='tokens_create-token'>Create Token</h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/tokens</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cooper"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mypass123"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight shell tab-shell"><code>curl /tokens
+  -X POST
+  -H <span class="s2">"Content-Type: application/xml"</span>
+  -d <span class="s2">"&lt;token&gt;
+        &lt;username&gt;cooper&lt;/username&gt;
+        &lt;password&gt;mypass123&lt;/password&gt;
+      &lt;/token&gt;"</span>
+</code></pre>
+<blockquote>
+<p>Returns</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"74215be5-2780-457e-81f9-775add78c4a5"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Create a token by username and password. Mainly used in officer login.</p>
+
+<p>Drivers don&#39;t need to use it because they are not required to login. But drivers will be provided with a token in their renewal notice so that they can access the renewal service.</p>
+<h2 id='tokens_delete-token'>Delete Token</h2><pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">/tokens/74215be5-2780-457e-81f9-775add78c4a5</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</code></pre><pre class="highlight shell tab-shell"><code>curl /tokens/74215be5-2780-457e-81f9-775add78c4a5
+  -X DELETE
+</code></pre>
+<blockquote>
+<p>Returns</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"74215be5-2780-457e-81f9-775add78c4a5"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Used in officer log out and when driver wants to archive their renewal notice.</p>
+<h1 id='licenses_licenses'>Licenses</h1>
+<p>Represent a drivers license.</p>
+
+<p>Licenses already exist in database. So there is no need to create a new driver&#39;s license (HTTP POST). We also don&#39;t have the function to remove a driver&#39;s license (HTTP DELETE).</p>
+<h2 id='licenses_attributes'>Attributes</h2>
+<table><thead>
+<tr>
+<th>Attributes</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>int, database primary key</td>
+</tr>
+<tr>
+<td>driverName</td>
+<td></td>
+</tr>
+<tr>
+<td>address</td>
+<td></td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+</tr>
+<tr>
+<td>licenseNumber</td>
+<td></td>
+</tr>
+<tr>
+<td>licenseClass</td>
+<td></td>
+</tr>
+<tr>
+<td>expiryDate</td>
+<td>date string, date to expire, in &quot;DD/MM/YYYY&quot; format</td>
+</tr>
+</tbody></table>
+<h2 id='licenses_get-license'>Get License</h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/licenses/1</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">token &lt;ACESS TOKEN&gt;</span>
+</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"/licenses/1"</span>
+  -H <span class="s2">"Authorization: token &lt;ACESS TOKEN&gt;"</span>
+</code></pre>
+<blockquote>
+<p>Returns</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"driverName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nima Nishad"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unit 1/97-99 Birriga Road, Bellevue Hill, NSW"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"licenseNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123123123Q"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"licenseClass"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Class C"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"youremail@email.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"expiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10/10/2017"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Get driver&#39;s license information by database id.</p>
+
+<p>Can only be done by license&#39;s owner or officers. It means drivers cannot search information of other drivers&#39; licenses.</p>
+<h2 id='licenses_update-license'>Update License</h2><pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">/licenses/1</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">token &lt;ACCESS TOKEN&gt;</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"driverName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nima Nishad"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unit 1/97-99 Birriga Road, Bellevue Hill, NSW"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"licenseNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123123123Q"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"licenseClass"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Class C"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"youremail@email.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"expiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10/10/2022"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"/licenses/1"</span>
+  -X PUT
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -H <span class="s2">"Authorization: token &lt;ACCESS TOKEN&gt;"</span>
+  -d <span class="s1">'{
+        "id": 1,
+        "driverName": "Nima Nishad",
+        "address": "Unit 1/97-99 Birriga Road, Bellevue Hill, NSW",
+        "licenseNumber": "123123123Q",
+        "licenseClass": "Class C",
+        "email": "youremail@email.com",
+        "expiryDate": "10/10/2022"
+      }'</span>
+</code></pre>
+<blockquote>
+<p>Returns an updated license, basically should be the same as above</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"driverName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nima Nishad"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unit 1/97-99 Birriga Road, Bellevue Hill, NSW"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"licenseNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123123123Q"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"licenseClass"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Class C"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"youremail@email.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"expiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10/10/2022"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Update a driver&#39;s license.</p>
+
+<p>Drivers can update their address in the beginning of the renewal. Officers can update the expiry date.</p>
+<h1 id='renewals_renewals'>Renewals</h1>
+<p>Represent renewal notices for licenses that are going to expire. Renewals are generated by officers manually.</p>
+<h2 id='renewals_attributes'>Attributes</h2>
+<table><thead>
+<tr>
+<th>Attributes</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>int, database primary key</td>
+</tr>
+<tr>
+<td>address</td>
+<td>string, temporary address</td>
+</tr>
+<tr>
+<td>email</td>
+<td>string, temporary email</td>
+</tr>
+<tr>
+<td>fee</td>
+<td>renewal fee to be paid, can be updated by officer during review</td>
+</tr>
+<tr>
+<td>status</td>
+<td>int, the following table shows the meaning of each int</td>
+</tr>
+<tr>
+<td>issueDate</td>
+<td>date time string, date of the notice issued, in &quot;DD/MM/YYYY hh:mm:ss&quot; format</td>
+</tr>
+<tr>
+<td>lastModified</td>
+<td>date time string, in &quot;DD/MM/YYYY hh:mm:ss&quot; format</td>
+</tr>
+<tr>
+<td>license</td>
+<td><a href="#licenses_licenses">license object</a>, not null, should only contain id and uri, referring to driver&#39;s license</td>
+</tr>
+<tr>
+<td>officer</td>
+<td><a href="#officers_officers">officer object</a>, nullable, should only contain id and uri, referring to the officer who is reviewing this case</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>0</td>
+<td>renewal notice is newly created by an officer</td>
+</tr>
+<tr>
+<td>1</td>
+<td>renewal needs to be reviewed by officer</td>
+</tr>
+<tr>
+<td>2</td>
+<td>renewal notice is under review</td>
+</tr>
+<tr>
+<td>3</td>
+<td>renewal has been checked by driver (or possibly has been reviewed by an officer) and has no problem, waiting for driver&#39;s payment</td>
+</tr>
+<tr>
+<td>4</td>
+<td>renewal is successful, payment and update are done</td>
+</tr>
+<tr>
+<td>5</td>
+<td>renewal is rejected, with reason</td>
+</tr>
+<tr>
+<td>6</td>
+<td>renewal notice is archived by driver, driver cannot view it again</td>
+</tr>
+</tbody></table>
+<h2 id='renewals_get-renewals'>Get Renewals</h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/renewals</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">token &lt;ACCESS TOKEN&gt;</span>
+</code></pre>
+<blockquote>
+<p>Returns an array of renewal objects</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/renewals/1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unit 1/97-99 Birriga Road, Bellevue Hill, NSW"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"youremail@email.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"issueDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27/09/2017 12:00:56"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lastModified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27/09/2017 12:00:56"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"license"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/licenses/1"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"officer"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>List all renewals, only officers can access this api.</p>
+<h2 id='renewals_get-one-renewal'>Get one renewal</h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/renewals/1</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">token &lt;ACCESS TOKEN&gt;</span>
+</code></pre>
+<blockquote>
+<p>Returns</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/renewals/1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unit 1/97-99 Birriga Road, Bellevue Hill, NSW"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"youremail@email.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"issueDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27/09/2017 12:00:56"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"lastModified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27/09/2017 12:00:56"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"license"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/licenses/1"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"officer"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>The license&#39;s owner can view the corresponding renewal notice.</p>
+<h2 id='renewals_create-a-renewal-notice'>Create a renewal notice</h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/renewals</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">token &lt;ACCESS TOKEN&gt;</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"license"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Returns</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/renewals/1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unit 1/97-99 Birriga Road, Bellevue Hill, NSW"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"youremail@email.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"issueDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27/09/2017 12:00:56"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"lastModified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27/09/2017 12:00:56"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"license"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/licenses/1"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"officer"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Only officers can create a renewal notice for a expiring driver&#39;s license.</p>
+
+<p>On creation, a email is sent to the driver&#39;s registered email.</p>
+<h3 id='renewals_paratemers'>Paratemers</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>license</td>
+<td><a href="#licenses_licenses">license object</a> reference, only need to provide id, see example</td>
+</tr>
+</tbody></table>
+<h2 id='renewals_update-a-renewal-notice'>Update a renewal notice</h2><pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">/renewals/1</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">token &lt;ACCESS TOKEN&gt;</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unit 1/97-99 Birriga Road, Bellevue Hill, NSW"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"youremail222@email.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"license"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"officer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Returns the updated object</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/renewals/1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unit 1/97-99 Birriga Road, Bellevue Hill, NSW"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"youremail222@email.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"issueDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27/09/2017 12:00:56"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"lastModified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27/09/2017 12:00:56"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"license"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/licenses/1"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"officer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/officers/1"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Can be done by license&#39;s owner or officers.</p>
+<h3 id='renewals_parameters'>Parameters</h3>
+<p>As <code>issueDate</code> cannot be changed and <code>lastModified</code> is updated automatically, they are not required to present in the parameters.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>should be the same in the url</td>
+</tr>
+<tr>
+<td>address</td>
+<td></td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td></td>
+</tr>
+<tr>
+<td>license</td>
+<td><a href="#licenses_licenses">license object</a> reference, only need to provide id, see example</td>
+</tr>
+<tr>
+<td>officer</td>
+<td><a href="#officers_officers">officer object</a> reference, only need to provide id, see example</td>
+</tr>
+</tbody></table>
+<h2 id='renewals_archive-a-renewal-notice'>Archive a renewal notice</h2>
+<p>Actually we consider it an update action instead of a delete operation.</p>
+
+<p>Just update the status to 6, see <a href="#renewals_update-a-renewal-notice">Update a renewal notice</a> for how to update.</p>
+<h1 id='payments_payments'>Payments</h1>
+<p>Payment is made by driver and is only created when driver takes the paying action.</p>
+
+<p>The amount that a driver needs to pay is stored in <a href="#renewals_renewals">renewal notice</a> <code>fee</code> field.</p>
+
+<p>A payment cannot be updated or deleted, because it&#39;s kind of a record or logs. So PUT or DELETE method is not allowed.</p>
+<h2 id='payments_attributes'>Attributes</h2>
+<table><thead>
+<tr>
+<th>Attributes</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>int, database primary key</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>numeric, the amount paid</td>
+</tr>
+<tr>
+<td>paidDate</td>
+<td>date time string, date of the required fee paid, in &quot;DD/MM/YYYY hh:mm:ss&quot; format</td>
+</tr>
+<tr>
+<td>renewal</td>
+<td><a href="#renewals_renewals">renewal object</a>, not null, should only contain id and uri, referring to driver&#39;s license</td>
+</tr>
+</tbody></table>
+<h2 id='payments_get-a-payment'>Get a payment</h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/payments/1</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">token &lt;ACCESS TOKEN&gt;</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+</code></pre>
+<blockquote>
+<p>Returns</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/payments/1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"paidDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27/09/2017 21:00:07"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"renewal"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"uri"</span><span class="p">,</span><span class="w"> </span><span class="s2">"/renewals/1"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='payments_create-a-payment'>Create a payment</h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/payments</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">token &lt;ACCESS TOKEN&gt;</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"renewal"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Returns</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/payments/1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"paidDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27/09/2017 21:00:07"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"renewal"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"uri"</span><span class="p">,</span><span class="w"> </span><span class="s2">"/renewals/1"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>A payment can only be created by drivers, after their renewal is confirmed or has been reviewed by an officer.</p>
+
+<p>In this assignment, the payment creation will always be successful because we just simulate the payment process and it doesn&#39;t involve any real payment services.</p>
+<h1 id='officers_officers'>Officers</h1>
+<p>Officers are people who send renewal notices to drivers and review cases manually.</p>
+
+<p>An officer can take over a case, either accepts or rejects it with possible adjustment to the amount of the fee.</p>
+
+<p>An officer needs to login to view all the information. For login process, see <a href="#notes_authentication">Authentication</a> and <a href="#tokens_tokens">Tokens</a>.</p>
+
+<p>We assume officers&#39; username and passwords already exist, no need to create and modify them. So no POST, PUT and DELETE.</p>
+<h2 id='officers_attributes'>Attributes</h2>
+<table><thead>
+<tr>
+<th>Attributes</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>int, database primary key</td>
+</tr>
+<tr>
+<td>username</td>
+<td></td>
+</tr>
+<tr>
+<td>password</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='officers_get-an-officer'>Get an officer</h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/officers/1</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">token &lt;ACCESS TOKEN&gt;</span>
+</code></pre>
+<blockquote>
+<p>Returns</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cooper"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"asldkjaslkdjalskdj"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='officers_get-officer-39-s-renewal'>Get officer&#39;s renewal</h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/officers/1/renewals</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">token &lt;ACCESS TOKEN&gt;</span>
+</code></pre>
+<blockquote>
+<p>Returns</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/renewals/1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unit 1/97-99 Birriga Road, Bellevue Hill, NSW"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"youremail@email.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"issueDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27/09/2017 12:00:56"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lastModified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27/09/2017 12:00:56"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"license"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/licenses/1"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"officer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"officers/1"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Get all the renewal notices taken over by this officer. If current officer doesn&#39;t have any cases, return <code>[]</code>.</p>
+
       </div>
       <div class="dark-box">
           <div class="lang-selector">
+                <a href="#" data-language-name="http">http</a>
                 <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
           </div>
       </div>
     </div>
