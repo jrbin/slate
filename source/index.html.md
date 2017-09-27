@@ -2,238 +2,113 @@
 title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
+  - http
   - shell
-  - ruby
-  - python
-  - javascript
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
-  - errors
+  - tokens
+  - licenses
+  - renewals
+  - payments
+  - officers
 
 search: true
 ---
 
-# Introduction
+# Notes
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+REST API document for COMP9322 assignment 2.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+## Use JSON or XML
 
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+I prefer using json for REST APIs because json is natively supported in javascript, making it really convenient.
 
-# Authentication
-
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
+## Resource Location URI
 
 ```json
-[
-  {
+{
+  "id": 1,
+  "uri": "http://myhost.com/licenses/1",
+  "driverName": "Nima Nishad"
+}
+```
+
+Every object representation should contain a uri of its location.
+
+For simplicity, the examples of resources representation below don't contain `http://myhost.com` part. But bear in mind that we should have this part in real application.
+
+## URI style
+
+For resources with relationship (e.g one-to-one, one-to-many), we have two types of URI style.
+
+For example, licenses and renewal notices is a one-to-many relationship. Every renewal belongs to a license. So for renewal, we can use either one of the following URIs
+
+1. `/licenses/<licenseId>/renewals/<renewalId>`
+2. `/renewals/renewalId`
+
+The first one has clearer semantic information. But it needs provide extra information (i.e. the license ID) every time we use the renewal notice (either creating, updating).
+
+In the second one, we can represent the relationship inside the resource object, like
+
+> Here is a renewal object
+
+```json
+{
+  "id": 1,
+  "license": {
     "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+    "uri": "/licenses/1"
   }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
 }
 ```
 
-This endpoint retrieves a specific kitten.
+But it's a little weird when creating a renewal notice using POST, because we need to provide the foreign key in the request body.
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+## Use PUT or PATCH
 
-### HTTP Request
+Theoretically prefer PUT because it's idempotent. However, when updating by PUT, server will ignore some values because either server generates the values automatically or server doesn't trust the values given by the client.
 
-`GET http://example.com/kittens/<ID>`
+See [Update a renewal notice](#renewals_update-a-renewal-notice) for example.
 
-### URL Parameters
+## Authentication
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
+```http
+POST /tokens HTTP/1.1
 ```
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
+```http
+GET /licenses HTTP/1.1
+Authorization: token type=driver,id=1
 ```
 
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
+```http
+GET /licenses HTTP/1.1
+Authorization: token b1c1d8
 ```
 
-```javascript
-const kittn = require('kittn');
+Every client that needs to access privileged APIs should have an access token.
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
+We follow the HTTP design, use the token in `Authorization header`. A token can be simple key value pairs or a hash string.
 
-> The above command returns JSON structured like this:
+Driver can get their access token by the renewal notice link in the email, which is like `http://clienthost.com/driver?renewalId=1&token=b1c1d8`
 
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
+Officers can get their access token by [tokens API](#tokens_tokens) when logging in.
 
-This endpoint retrieves a specific kitten.
+## Errors
 
-### HTTP Request
+When a server error happens, the server should return an HTTP status other than `HTTP 200`. For simplicity, we are not trying to design a detailed error code system by ourselves on top of HTTP error codes. The following table list the HTTP status code the server should return in general cases.
 
-`DELETE http://example.com/kittens/<ID>`
+HTTP status | Meaning
+----------- | -------
+400 | Bad Request -- Your request has unexpected parameters.
+401 | Unauthorized -- Your access token is wrong.
+404 | Not Found -- The requested resources could not be found.
+405 | Method Not Allowed -- You tried to access a resource with an invalid method.
+500 | Internal Server Error -- We had a problem with our server. Try again later.
+503 | Service Unavailable -- We're temporarily offline for maintenance. Please try again later.
 
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
-
+Note `50x` are runtime error, you should not return them yourself. Instead, you should let your program or server software (i.e. nginx) throw it.
