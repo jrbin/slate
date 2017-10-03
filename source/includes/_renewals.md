@@ -9,12 +9,11 @@ Attributes | Description
 id | int, database primary key
 address | string, temporary address
 email | string, temporary email
-fee | renewal fee to be paid, can be updated by officer during review
 status | int, the following table shows the meaning of each int
 issueDate | date time string, date of the notice issued, in "DD/MM/YYYY hh:mm:ss" format
 lastModified | date time string, in "DD/MM/YYYY hh:mm:ss" format
 license | [license object](#licenses_licenses), not null, should only contain id and uri, referring to driver's license
-officer | [officer object](#officers_officers), nullable, should only contain id and uri, referring to the officer who is reviewing this case
+payment | [payment obkect](#payments_payments), not null, should only contain id and uri, referring to driver's payment
 
 Status | Description
 ------ | -----------
@@ -42,7 +41,6 @@ Authorization: token <ACCESS TOKEN>
     "uri": "/renewals/1",
     "address": "Unit 1/97-99 Birriga Road, Bellevue Hill, NSW",
     "email": "youremail@email.com",
-    "fee": 50,
     "status": 0,
     "issueDate": "27/09/2017 12:00:56",
     "lastModified": "27/09/2017 12:00:56",
@@ -50,7 +48,10 @@ Authorization: token <ACCESS TOKEN>
       "id": 1,
       "uri": "/licenses/1"
     },
-    "officer": null
+    "payment": {
+      "id": 1,
+      "url": "/payments/1"
+    }
   }
 ]
 ```
@@ -72,7 +73,6 @@ Authorization: token <ACCESS TOKEN>
   "uri": "/renewals/1",
   "address": "Unit 1/97-99 Birriga Road, Bellevue Hill, NSW",
   "email": "youremail@email.com",
-  "fee": 50,
   "status": 0,
   "issueDate": "27/09/2017 12:00:56",
   "lastModified": "27/09/2017 12:00:56",
@@ -80,7 +80,10 @@ Authorization: token <ACCESS TOKEN>
     "id": 1,
     "uri": "/licenses/1"
   },
-  "officer": null
+  "payment": {
+    "id": 1,
+    "url": "/payments/1"
+  }
 }
 ```
 
@@ -115,13 +118,22 @@ Authorization: token <ACCESS TOKEN>
     "id": 1,
     "uri": "/licenses/1"
   },
-  "officer": null
+  "payment": {
+    "id": 1,
+    "url": "/payments/1"
+  }
 }
 ```
 
 Only officers can create a renewal notice for a expiring driver's license.
 
-On creation, a email is sent to the driver's registered email.
+<aside class="notice">
+On creation, a email is sent to the driver's registered email
+</aside>
+
+<aside class="notice">
+A associated payment resource is also created.
+</aside>
 
 ### Paratemers
 
@@ -140,12 +152,8 @@ Authorization: token <ACCESS TOKEN>
   "id": "1",
   "address": "Unit 1/97-99 Birriga Road, Bellevue Hill, NSW",
   "email": "youremail222@email.com",
-  "fee": 50,
   "status": 1,
   "license": {
-    "id": 1
-  },
-  "officer": {
     "id": 1
   }
 }
@@ -159,7 +167,6 @@ Authorization: token <ACCESS TOKEN>
   "uri": "/renewals/1",
   "address": "Unit 1/97-99 Birriga Road, Bellevue Hill, NSW",
   "email": "youremail222@email.com",
-  "fee": 50,
   "status": 1,
   "issueDate": "27/09/2017 12:00:56",
   "lastModified": "27/09/2017 12:00:56",
@@ -167,9 +174,9 @@ Authorization: token <ACCESS TOKEN>
     "id": 1,
     "uri": "/licenses/1"
   },
-  "officer": {
+  "payment": {
     "id": 1,
-    "uri": "/officers/1"
+    "url": "/payments/1"
   }
 }
 ```
@@ -187,7 +194,6 @@ address   |
 email     |
 status    |
 license   | [license object](#licenses_licenses) reference, only need to provide id, see example
-officer   | [officer object](#officers_officers) reference, only need to provide id, see example
 
 
 ## Archive a renewal notice

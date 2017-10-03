@@ -10,7 +10,6 @@ toc_footers:
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
-  - tokens
   - licenses
   - renewals
   - payments
@@ -23,7 +22,11 @@ search: true
 
 REST API document for COMP9322 assignment 2.
 
-## Use JSON or XML
+<aside class="warning">
+When and who will create payment is modified according to Professor's suggestion, please see <a href="#payments_payments">payments section</a> and <a href="#renewals_create-a-renewal-notice">Create a renewal notice</a>
+</aside>
+
+## Use JSON
 
 I prefer using json for REST APIs because json is natively supported in javascript, making it really convenient.
 
@@ -42,6 +45,26 @@ Every object representation should contain a uri of its location.
 For simplicity, the examples of resources representation below don't contain `http://myhost.com` part. But bear in mind that we should have this part in real application.
 
 ## URI style
+
+<aside class="notice">
+Prefer shorter ones, like
+</aside>
+
+- `/licenses/1`
+- `/renewals/1`
+- `/payments/1`
+
+<aside class="warning">
+Not preferred
+</aside>
+
+- `/licenses/1/renewals/1`
+- `/renewals/1/payments/1`
+- `/licenses/1/renewals/1/payments/1`
+
+<aside class="notice">
+The following is the original discussion
+</aside>
 
 For resources with relationship (e.g one-to-one, one-to-many), we have two types of URI style.
 
@@ -70,33 +93,39 @@ But it's a little weird when creating a renewal notice using POST, because we ne
 
 ## Use PUT or PATCH
 
+<aside class="notice">
+Use PUT
+</aside>
+
 Theoretically prefer PUT because it's idempotent. However, when updating by PUT, server will ignore some values because either server generates the values automatically or server doesn't trust the values given by the client.
 
 See [Update a renewal notice](#renewals_update-a-renewal-notice) for example.
 
 ## Authentication
 
-```http
-POST /tokens HTTP/1.1
-```
+> Drivers' authorisation
 
 ```http
 GET /licenses HTTP/1.1
-Authorization: token type=driver,id=1
+Authorization: token 03e8296d-566a-4405-bb03-bf4913794c90
 ```
+
+> Officers' authorisation
 
 ```http
 GET /licenses HTTP/1.1
-Authorization: token b1c1d8
+Authorization: token 22ecc9e1-fa98-4ea8-a50b-8a074046b02c
 ```
 
-Every client that needs to access privileged APIs should have an access token.
+<aside class="notice">
+Use <code>03e8296d-566a-4405-bb03-bf4913794c90</code> for drivers
+</aside>
 
-We follow the HTTP design, use the token in `Authorization header`. A token can be simple key value pairs or a hash string.
+<aside class="notice">
+Use <code>22ecc9e1-fa98-4ea8-a50b-8a074046b02c</code> for officers
+</aside>
 
-Driver can get their access token by the renewal notice link in the email, which is like `http://clienthost.com/driver?renewalId=1&token=b1c1d8`
-
-Officers can get their access token by [tokens API](#tokens_tokens) when logging in.
+As the professor said, the authorization and authentication will be much easier. All drivers will use the same token and all officers will use the another token. The two tokens are predefined and can be hardcoded.
 
 ## Errors
 
