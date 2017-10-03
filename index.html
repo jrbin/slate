@@ -223,7 +223,7 @@
             <a href="#notes_notes" class="toc-h1 toc-link" data-title="Notes">Notes</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#notes_use-json-or-xml" class="toc-h2 toc-link" data-title="Notes">Use JSON or XML</a>
+                    <a href="#notes_use-json" class="toc-h2 toc-link" data-title="Notes">Use JSON</a>
                   </li>
                   <li>
                     <a href="#notes_resource-location-uri" class="toc-h2 toc-link" data-title="Notes">Resource Location URI</a>
@@ -239,20 +239,6 @@
                   </li>
                   <li>
                     <a href="#notes_errors" class="toc-h2 toc-link" data-title="Notes">Errors</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#tokens_tokens" class="toc-h1 toc-link" data-title="Tokens">Tokens</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#tokens_attribute" class="toc-h2 toc-link" data-title="Tokens">Attribute</a>
-                  </li>
-                  <li>
-                    <a href="#tokens_create-token" class="toc-h2 toc-link" data-title="Tokens">Create Token</a>
-                  </li>
-                  <li>
-                    <a href="#tokens_delete-token" class="toc-h2 toc-link" data-title="Tokens">Delete Token</a>
                   </li>
               </ul>
           </li>
@@ -303,23 +289,12 @@
                     <a href="#payments_get-a-payment" class="toc-h2 toc-link" data-title="Payments">Get a payment</a>
                   </li>
                   <li>
-                    <a href="#payments_create-a-payment" class="toc-h2 toc-link" data-title="Payments">Create a payment</a>
+                    <a href="#payments_update-a-payment" class="toc-h2 toc-link" data-title="Payments">Update a payment</a>
                   </li>
               </ul>
           </li>
           <li>
             <a href="#officers_officers" class="toc-h1 toc-link" data-title="Officers">Officers</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#officers_attributes" class="toc-h2 toc-link" data-title="Officers">Attributes</a>
-                  </li>
-                  <li>
-                    <a href="#officers_get-an-officer" class="toc-h2 toc-link" data-title="Officers">Get an officer</a>
-                  </li>
-                  <li>
-                    <a href="#officers_get-officer-39-s-renewal" class="toc-h2 toc-link" data-title="Officers">Get officer's renewal</a>
-                  </li>
-              </ul>
           </li>
       </div>
         <ul class="toc-footer">
@@ -332,7 +307,11 @@
       <div class="content">
         <h1 id='notes_notes'>Notes</h1>
 <p>REST API document for COMP9322 assignment 2.</p>
-<h2 id='notes_use-json-or-xml'>Use JSON or XML</h2>
+
+<aside class="warning">
+When and who will create payment is modified according to Professor's suggestion, please see <a href="#payments_payments">payments section</a> and <a href="#renewals_create-a-renewal-notice">Create a renewal notice</a>
+</aside>
+<h2 id='notes_use-json'>Use JSON</h2>
 <p>I prefer using json for REST APIs because json is natively supported in javascript, making it really convenient.</p>
 <h2 id='notes_resource-location-uri'>Resource Location URI</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
@@ -344,6 +323,30 @@
 
 <p>For simplicity, the examples of resources representation below don&#39;t contain <code>http://myhost.com</code> part. But bear in mind that we should have this part in real application.</p>
 <h2 id='notes_uri-style'>URI style</h2>
+<aside class="notice">
+Prefer shorter ones, like
+</aside>
+
+<ul>
+<li><code>/licenses/1</code></li>
+<li><code>/renewals/1</code></li>
+<li><code>/payments/1</code></li>
+</ul>
+
+<aside class="warning">
+Not preferred
+</aside>
+
+<ul>
+<li><code>/licenses/1/renewals/1</code></li>
+<li><code>/renewals/1/payments/1</code></li>
+<li><code>/licenses/1/renewals/1/payments/1</code></li>
+</ul>
+
+<aside class="notice">
+The following is the original discussion
+</aside>
+
 <p>For resources with relationship (e.g one-to-one, one-to-many), we have two types of URI style.</p>
 
 <p>For example, licenses and renewal notices is a one-to-many relationship. Every renewal belongs to a license. So for renewal, we can use either one of the following URIs</p>
@@ -370,22 +373,35 @@
 </span></code></pre>
 <p>But it&#39;s a little weird when creating a renewal notice using POST, because we need to provide the foreign key in the request body.</p>
 <h2 id='notes_use-put-or-patch'>Use PUT or PATCH</h2>
+<aside class="notice">
+Use PUT
+</aside>
+
 <p>Theoretically prefer PUT because it&#39;s idempotent. However, when updating by PUT, server will ignore some values because either server generates the values automatically or server doesn&#39;t trust the values given by the client.</p>
 
 <p>See <a href="#renewals_update-a-renewal-notice">Update a renewal notice</a> for example.</p>
-<h2 id='notes_authentication'>Authentication</h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/tokens</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-</code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/licenses</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">token type=driver,id=1</span>
-</code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/licenses</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">token b1c1d8</span>
+<h2 id='notes_authentication'>Authentication</h2>
+<blockquote>
+<p>Drivers&#39; authorisation</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/licenses</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">token 03e8296d-566a-4405-bb03-bf4913794c90</span>
 </code></pre>
-<p>Every client that needs to access privileged APIs should have an access token.</p>
+<blockquote>
+<p>Officers&#39; authorisation</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/licenses</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">token 22ecc9e1-fa98-4ea8-a50b-8a074046b02c</span>
+</code></pre>
+<aside class="notice">
+Use <code>03e8296d-566a-4405-bb03-bf4913794c90</code> for drivers
+</aside>
 
-<p>We follow the HTTP design, use the token in <code>Authorization header</code>. A token can be simple key value pairs or a hash string.</p>
+<aside class="notice">
+Use <code>22ecc9e1-fa98-4ea8-a50b-8a074046b02c</code> for officers
+</aside>
 
-<p>Driver can get their access token by the renewal notice link in the email, which is like <code>http://clienthost.com/driver?renewalId=1&amp;token=b1c1d8</code></p>
-
-<p>Officers can get their access token by <a href="#tokens_tokens">tokens API</a> when logging in.</p>
+<p>As the professor said, the authorization and authentication will be much easier. All drivers will use the same token and all officers will use the another token. The two tokens are predefined and can be hardcoded.</p>
 <h2 id='notes_errors'>Errors</h2>
 <p>When a server error happens, the server should return an HTTP status other than <code>HTTP 200</code>. For simplicity, we are not trying to design a detailed error code system by ourselves on top of HTTP error codes. The following table list the HTTP status code the server should return in general cases.</p>
 
@@ -422,61 +438,6 @@
 </tbody></table>
 
 <p>Note <code>50x</code> are runtime error, you should not return them yourself. Instead, you should let your program or server software (i.e. nginx) throw it.</p>
-<h1 id='tokens_tokens'>Tokens</h1>
-<p>Used in authentication and authorisation.</p>
-
-<p>Everytime the client application calls the REST api, it should include the token in the request header if the api needs authorisation.</p>
-
-<p>Token is kind of different from other resources because it&#39;s not a database entity and doesn&#39;t carry any meaningful fields itself.</p>
-<h2 id='tokens_attribute'>Attribute</h2>
-<table><thead>
-<tr>
-<th>Attributes</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>id</td>
-<td>the only thing in a token, can be a int or other unique identifiers, represents a session and stores some user information</td>
-</tr>
-</tbody></table>
-<h2 id='tokens_create-token'>Create Token</h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/tokens</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-
-<span class="p">{</span><span class="w">
-  </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cooper"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mypass123"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><pre class="highlight shell tab-shell"><code>curl /tokens
-  -X POST
-  -H <span class="s2">"Content-Type: application/xml"</span>
-  -d <span class="s2">"&lt;token&gt;
-        &lt;username&gt;cooper&lt;/username&gt;
-        &lt;password&gt;mypass123&lt;/password&gt;
-      &lt;/token&gt;"</span>
-</code></pre>
-<blockquote>
-<p>Returns</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"74215be5-2780-457e-81f9-775add78c4a5"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>Create a token by username and password. Mainly used in officer login.</p>
-
-<p>Drivers don&#39;t need to use it because they are not required to login. But drivers will be provided with a token in their renewal notice so that they can access the renewal service.</p>
-<h2 id='tokens_delete-token'>Delete Token</h2><pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">/tokens/74215be5-2780-457e-81f9-775add78c4a5</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl /tokens/74215be5-2780-457e-81f9-775add78c4a5
-  -X DELETE
-</code></pre>
-<blockquote>
-<p>Returns</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"74215be5-2780-457e-81f9-775add78c4a5"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>Used in officer log out and when driver wants to archive their renewal notice.</p>
 <h1 id='licenses_licenses'>Licenses</h1>
 <p>Represent a drivers license.</p>
 
@@ -603,10 +564,6 @@
 <td>string, temporary email</td>
 </tr>
 <tr>
-<td>fee</td>
-<td>renewal fee to be paid, can be updated by officer during review</td>
-</tr>
-<tr>
 <td>status</td>
 <td>int, the following table shows the meaning of each int</td>
 </tr>
@@ -623,8 +580,8 @@
 <td><a href="#licenses_licenses">license object</a>, not null, should only contain id and uri, referring to driver&#39;s license</td>
 </tr>
 <tr>
-<td>officer</td>
-<td><a href="#officers_officers">officer object</a>, nullable, should only contain id and uri, referring to the officer who is reviewing this case</td>
+<td>payment</td>
+<td><a href="#payments_payments">payment obkect</a>, not null, should only contain id and uri, referring to driver&#39;s payment</td>
 </tr>
 </tbody></table>
 
@@ -675,7 +632,6 @@
     </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/renewals/1"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unit 1/97-99 Birriga Road, Bellevue Hill, NSW"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"youremail@email.com"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="s2">"issueDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27/09/2017 12:00:56"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"lastModified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27/09/2017 12:00:56"</span><span class="p">,</span><span class="w">
@@ -683,7 +639,10 @@
       </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
       </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/licenses/1"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"officer"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="s2">"payment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/payments/1"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
@@ -699,7 +658,6 @@
   </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/renewals/1"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unit 1/97-99 Birriga Road, Bellevue Hill, NSW"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"youremail@email.com"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
   </span><span class="s2">"issueDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27/09/2017 12:00:56"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"lastModified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27/09/2017 12:00:56"</span><span class="p">,</span><span class="w">
@@ -707,7 +665,10 @@
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/licenses/1"</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"officer"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="s2">"payment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/payments/1"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>The license&#39;s owner can view the corresponding renewal notice.</p>
@@ -736,12 +697,21 @@
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/licenses/1"</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"officer"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="s2">"payment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/payments/1"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Only officers can create a renewal notice for a expiring driver&#39;s license.</p>
 
-<p>On creation, a email is sent to the driver&#39;s registered email.</p>
+<aside class="notice">
+On creation, a email is sent to the driver's registered email
+</aside>
+
+<aside class="notice">
+A associated payment resource is also created.
+</aside>
 <h3 id='renewals_paratemers'>Paratemers</h3>
 <table><thead>
 <tr>
@@ -762,12 +732,8 @@
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unit 1/97-99 Birriga Road, Bellevue Hill, NSW"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"youremail222@email.com"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
   </span><span class="s2">"license"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"officer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -780,7 +746,6 @@
   </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/renewals/1"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unit 1/97-99 Birriga Road, Bellevue Hill, NSW"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"youremail222@email.com"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
   </span><span class="s2">"issueDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27/09/2017 12:00:56"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"lastModified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27/09/2017 12:00:56"</span><span class="p">,</span><span class="w">
@@ -788,9 +753,9 @@
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/licenses/1"</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"officer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"payment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/officers/1"</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/payments/1"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -824,21 +789,17 @@
 <td>license</td>
 <td><a href="#licenses_licenses">license object</a> reference, only need to provide id, see example</td>
 </tr>
-<tr>
-<td>officer</td>
-<td><a href="#officers_officers">officer object</a> reference, only need to provide id, see example</td>
-</tr>
 </tbody></table>
 <h2 id='renewals_archive-a-renewal-notice'>Archive a renewal notice</h2>
 <p>Actually we consider it an update action instead of a delete operation.</p>
 
 <p>Just update the status to 6, see <a href="#renewals_update-a-renewal-notice">Update a renewal notice</a> for how to update.</p>
 <h1 id='payments_payments'>Payments</h1>
-<p>Payment is made by driver and is only created when driver takes the paying action.</p>
+<aside class="notice">
+Payment design is modified.
+</aside>
 
-<p>The amount that a driver needs to pay is stored in <a href="#renewals_renewals">renewal notice</a> <code>fee</code> field.</p>
-
-<p>A payment cannot be updated or deleted, because it&#39;s kind of a record or logs. So PUT or DELETE method is not allowed.</p>
+<p>Payment is closely related to renewal notices. When a renewal notice is created, a payment resource is also created. So no explicit creation (POST) of a payment is allowed.</p>
 <h2 id='payments_attributes'>Attributes</h2>
 <table><thead>
 <tr>
@@ -856,7 +817,7 @@
 </tr>
 <tr>
 <td>paidDate</td>
-<td>date time string, date of the required fee paid, in &quot;DD/MM/YYYY hh:mm:ss&quot; format</td>
+<td>date time string, date of the required fee paid, in &quot;DD/MM/YYYY hh:mm:ss&quot; format, is NULL when payment is not made</td>
 </tr>
 <tr>
 <td>renewal</td>
@@ -874,20 +835,24 @@
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
   </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/payments/1"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"paidDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27/09/2017 21:00:07"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"paidDate"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"renewal"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="s2">"uri"</span><span class="p">,</span><span class="w"> </span><span class="s2">"/renewals/1"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='payments_create-a-payment'>Create a payment</h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/payments</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</span></code></pre><h2 id='payments_update-a-payment'>Update a payment</h2><pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">/payments/1</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">token &lt;ACCESS TOKEN&gt;</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
 <span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/payments/1"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"paidDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27/09/2017 21:00:07"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"renewal"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"uri"</span><span class="p">,</span><span class="w"> </span><span class="s2">"/renewals/1"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -905,76 +870,13 @@
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>A payment can only be created by drivers, after their renewal is confirmed or has been reviewed by an officer.</p>
-
-<p>In this assignment, the payment creation will always be successful because we just simulate the payment process and it doesn&#39;t involve any real payment services.</p>
+<p>When a payment is actually paid by the driver. This operation will update the <code>paidDate</code> field to current time.</p>
 <h1 id='officers_officers'>Officers</h1>
-<p>Officers are people who send renewal notices to drivers and review cases manually.</p>
+<aside class="warning">
+Not a REST resource. See the following for details.
+</aside>
 
-<p>An officer can take over a case, either accepts or rejects it with possible adjustment to the amount of the fee.</p>
-
-<p>An officer needs to login to view all the information. For login process, see <a href="#notes_authentication">Authentication</a> and <a href="#tokens_tokens">Tokens</a>.</p>
-
-<p>We assume officers&#39; username and passwords already exist, no need to create and modify them. So no POST, PUT and DELETE.</p>
-<h2 id='officers_attributes'>Attributes</h2>
-<table><thead>
-<tr>
-<th>Attributes</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>id</td>
-<td>int, database primary key</td>
-</tr>
-<tr>
-<td>username</td>
-<td></td>
-</tr>
-<tr>
-<td>password</td>
-<td></td>
-</tr>
-</tbody></table>
-<h2 id='officers_get-an-officer'>Get an officer</h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/officers/1</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">token &lt;ACCESS TOKEN&gt;</span>
-</code></pre>
-<blockquote>
-<p>Returns</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cooper"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"asldkjaslkdjalskdj"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='officers_get-officer-39-s-renewal'>Get officer&#39;s renewal</h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/officers/1/renewals</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">token &lt;ACCESS TOKEN&gt;</span>
-</code></pre>
-<blockquote>
-<p>Returns</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/renewals/1"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unit 1/97-99 Birriga Road, Bellevue Hill, NSW"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"youremail@email.com"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"issueDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27/09/2017 12:00:56"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"lastModified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27/09/2017 12:00:56"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"license"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/licenses/1"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"officer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"officers/1"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-<p>Get all the renewal notices taken over by this officer. If current officer doesn&#39;t have any cases, return <code>[]</code>.</p>
+<p>Officers should be managed in client application. It has nothing to do with the REST service. The only thing that the REST service distinguishes officers and drivers it the <a href="#notes_authentication">access token</a>.</p>
 
       </div>
       <div class="dark-box">
